@@ -1,5 +1,8 @@
 import axios from 'axios'
 
+/**
+ * Create an Axios instance with default base URL
+ */
 export const apiClient = axios.create({
   baseURL: 'https://api.coinlore.net/api/',
 })

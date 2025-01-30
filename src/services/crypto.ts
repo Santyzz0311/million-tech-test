@@ -3,7 +3,7 @@ import { ApiGetCryptoReponse } from '@/types/implementations/api'
 import { ContractCryptoResponse } from '@/types/implementations/contract'
 import { GetAllCryptosError } from '@/utils/custom-errors'
 import { HTTP_STATUS_CODES } from '@/utils/enums'
-import { formatPriceToCurrency } from '@/utils/helpers/price-format'
+import { mapCryptoData } from '@/utils/helpers/crypto-mappers'
 import { isAxiosError } from 'axios'
 
 interface GetAllCryptoStatisticsParams {
@@ -36,30 +36,7 @@ export const getAllCryptoStatistics = async (
     )
     const cryptoData = response.data
 
-    return {
-      data: cryptoData.data.map(crypto => ({
-        id: crypto.id,
-        name: crypto.name,
-        circulatingSupply: crypto.csupply,
-        marketCapUsd: crypto.market_cap_usd,
-        maxSupply: crypto.msupply,
-        nameId: crypto.nameid,
-        percentChange1h: crypto.percent_change_1h,
-        percentChange24h: crypto.percent_change_24h,
-        percentChange7d: crypto.percent_change_7d,
-        priceBtc: formatPriceToCurrency(Number(crypto.price_btc)),
-        priceUsd: formatPriceToCurrency(Number(crypto.price_usd)),
-        rank: crypto.rank,
-        symbol: crypto.symbol,
-        totalSupply: crypto.tsupply,
-        volume24: crypto.volume24,
-        volume24a: crypto.volume24a,
-      })),
-      info: {
-        coinsNum: cryptoData.data.length,
-        time: cryptoData.info.time,
-      },
-    }
+    return mapCryptoData(cryptoData)
   } catch (error) {
     if (isAxiosError(error)) {
       throw new GetAllCryptosError(
