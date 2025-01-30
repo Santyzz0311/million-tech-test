@@ -1,32 +1,34 @@
-# Prueba Técnica: React Native Mobile
+# 📌 Guía rápida para ejecutar un proyecto de React Native
 
-## Requisitos
-- [X] Usar TypeScript
-- [X] Usar React Native
-- [X] Compatible con iOS y Android
+## 🔹 Requerimientos
+Antes de ejecutar el proyecto, asegúrate de tener instaladas las siguientes herramientas:
 
-## Criterios de Evaluación
-- [ ] Arquitectura
-- [ ] Estructura
-- [ ] Código documentado
-- [ ] Mejores prácticas
-- [ ] Rendimiento
-- [ ] Pruebas unitarias (opcional)
+- **Node.js** (>= 18)
+- **Git**
+- **Android Studio** (para ejecutar en Android)
+- **Xcode y Cocoapods** (para ejecutar en iOS, solo en macOS)
 
-## Ejercicio Práctico
-Una gran empresa inmobiliaria requiere una aplicación móvil que obtenga información sobre criptomonedas en USD, ya que se decidió usar el dólar como moneda por defecto. La aplicación debe:
+---
 
-- [X] Obtener datos de criptomonedas desde la API: [API de criptomonedas Coinlore](https://www.coinlore.com/cryptocurrency-data-api).
-- [X] Crear una lista de criptomonedas.
-- [X] Mostrar las tasas de cambio a USD.
-- [X] Permitir filtrar la lista de criptomonedas.
-- [X] Mostrar detalles de las criptomonedas.
-- [ ] Intentar utilizar una estructura de Programación Orientada a Objetos (POO).
+## 🛠 **Pasos para ejecutar el proyecto**
 
-## Entrega
-- [X] Empaquetar la solución en un archivo `.zip` o subirla a GitHub (o similar).
-- [ ] Incluir pasos para correr el proyecto después de descargarlo.
-- [ ] Incluir una copia de seguridad de la base de datos, si es necesario.
-- [ ] Proveer instrucciones adicionales en caso de requerirse para correr el proyecto.
+### **1️⃣ Clonar el repositorio**
+```bash
+npm install  # O yarn install
+```
 
-Enviar la solución a: `hr@millionluxury.com`
+### **2️⃣ Ejecutar la aplicación**
+#### **📱 Android**
+```bash
+npm run android  # O yarn android
+```
+
+#### **🍏 iOS (Solo en macOS)**
+```bash
+npm run ios  # O yarn ios
+```
+
+#### **🚀 Después de buildear (si aplica)**
+```bash
+npm start  # O yarn start
+```

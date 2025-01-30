@@ -4,7 +4,7 @@ import { Cryptos } from '@/components/cryptos'
 
 function App() {
   return (
-    <SafeAreaView style={{ backgroundColor: '#0af', flex: 1 }}>
+    <SafeAreaView style={{ backgroundColor: '#e2e2e2', flex: 1 }}>
       <Cryptos />
     </SafeAreaView>
   )

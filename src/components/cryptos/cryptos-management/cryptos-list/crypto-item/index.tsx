@@ -1,5 +1,6 @@
 import { useBoolean } from '@/hooks/shared/useBoolean'
 import { ContractCrypto } from '@/types/implementations/contract'
+import { memo } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
   crypto: ContractCrypto
 }
 
-export const CryptoItem = ({ crypto }: Props) => {
+export const CryptoItem = memo(({ crypto }: Props) => {
   const { value: isOpen, toggle } = useBoolean()
 
   const handlePressCryptoItem = () => {
@@ -20,6 +21,11 @@ export const CryptoItem = ({ crypto }: Props) => {
     return pressed || isOpen
   }
 
+  const cryptoName =
+    crypto.name.length > 20
+      ? crypto.name.slice(0, 20).concat('...')
+      : crypto.name
+
   return (
     <Pressable
       onPress={handlePressCryptoItem}
@@ -27,7 +33,7 @@ export const CryptoItem = ({ crypto }: Props) => {
       {({ pressed }) => (
         <View style={styles.container__data}>
           <View style={styles.data__mainInfo}>
-            <Text style={styles.mainInfo__name}>{crypto.name}</Text>
+            <Text style={styles.mainInfo__name}>{cryptoName}</Text>
             <Text style={styles.mainInfo__priceInUsd}>
               Price in USD: {crypto.priceUsd}
             </Text>
@@ -61,7 +67,9 @@ export const CryptoItem = ({ crypto }: Props) => {
       )}
     </Pressable>
   )
-}
+})
+
+CryptoItem.displayName = 'CryptoItem'
 
 const styles = StyleSheet.create({
   'container--pressed': {
@@ -78,6 +86,7 @@ const styles = StyleSheet.create({
   data__mainInfo: {
     justifyContent: 'space-between',
     flexDirection: 'row',
+    alignItems: 'center',
   },
   mainInfo__name: {
     fontWeight: 'bold',

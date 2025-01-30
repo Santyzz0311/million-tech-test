@@ -47,7 +47,11 @@ export const CryptosManagement: FC<Props> = ({
         />
       </View>
       <CryptosList cryptos={filteredCryptos} addMoreCryptos={addMoreCryptos} />
-      {loadingMoreCryptos && <ActivityIndicator color="#000" />}
+      {loadingMoreCryptos && (
+        <View style={styles.container__loadMoreData}>
+          <ActivityIndicator size="large" color="black" />
+        </View>
+      )}
     </View>
   )
 }
@@ -61,6 +65,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
     padding: 10,
+  },
+  container__loadMoreData: {
+    padding: 10,
+    height: 50,
   },
   header__input: {
     width: '100%',
