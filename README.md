@@ -19,8 +19,8 @@ Una gran empresa inmobiliaria requiere una aplicación móvil que obtenga inform
 - [X] Obtener datos de criptomonedas desde la API: [API de criptomonedas Coinlore](https://www.coinlore.com/cryptocurrency-data-api).
 - [X] Crear una lista de criptomonedas.
 - [X] Mostrar las tasas de cambio a USD.
-- [ ] Permitir filtrar la lista de criptomonedas.
-- [ ] Mostrar detalles de las criptomonedas.
+- [X] Permitir filtrar la lista de criptomonedas.
+- [X] Mostrar detalles de las criptomonedas.
 - [ ] Intentar utilizar una estructura de Programación Orientada a Objetos (POO).
 
 ## Entrega

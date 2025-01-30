@@ -1,7 +1,7 @@
-import { useCryptos } from '@/hooks/useCryptos'
+import { useCryptos } from '@/hooks/crypto/useCryptos'
 import { ActivityIndicator } from 'react-native'
 import { ErrorCannotAccess } from '@/components/design-system/error'
-import { CryptosList } from './cryptos-list'
+import { CryptosManagement } from './cryptos-management'
 
 /**
  * Cryptos component that manage the list of cryptocurrencies.
@@ -11,9 +11,11 @@ export const Cryptos = () => {
 
   if (loading) return <ActivityIndicator />
 
-  return error ? (
-    <ErrorCannotAccess message={error.message} />
+  return error || !cryptos ? (
+    <ErrorCannotAccess
+      message={error?.message ?? 'An error has been ocurred'}
+    />
   ) : (
-    <CryptosList cryptos={cryptos?.data ?? []} />
+    <CryptosManagement cryptos={cryptos} />
   )
 }
