@@ -1,5 +1,6 @@
 import { getAllCryptoStatistics } from '@/services/crypto'
-import { ContractCrypto } from '@/types/implementations/contract'
+import { ContractCryptoResponse } from '@/types/implementations/contract'
+import { GetAllCryptosError } from '@/utils/custom-errors'
 import { useCallback, useEffect, useState } from 'react'
 
 /**
@@ -7,13 +8,22 @@ import { useCallback, useEffect, useState } from 'react'
  * @returns The list of cryptocurrencies
  */
 export function useCryptos({ autoFetch = true } = {}) {
-  const [cryptos, setCryptos] = useState<ContractCrypto[]>([])
+  const [cryptos, setCryptos] = useState<ContractCryptoResponse | null>(null)
+  const [error, setError] = useState<InstanceType<
+    typeof GetAllCryptosError
+  > | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
 
   const refreshCryptos = useCallback((signal?: AbortSignal) => {
     setLoading(true)
     getAllCryptoStatistics(signal)
-      .then(cryptos => setCryptos(cryptos))
+      .then(cryptos => {
+        setCryptos(cryptos)
+        setError(null)
+      })
+      .catch(error => {
+        setError(error)
+      })
       .finally(() => setLoading(false))
   }, [])
 
@@ -31,5 +41,6 @@ export function useCryptos({ autoFetch = true } = {}) {
     cryptos,
     loading,
     refreshCryptos,
+    error,
   }
 }

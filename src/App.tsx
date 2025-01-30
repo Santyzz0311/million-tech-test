@@ -1,13 +1,8 @@
 import React from 'react'
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  useColorScheme,
-  View,
-} from 'react-native'
+import { SafeAreaView, StatusBar, useColorScheme } from 'react-native'
 
 import { Colors } from 'react-native/Libraries/NewAppScreen'
+import { Cryptos } from '@/components/cryptos'
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark'
@@ -22,16 +17,9 @@ function App(): React.JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <View style={styles.container}></View>
+      <Cryptos />
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-})
 
 export default App

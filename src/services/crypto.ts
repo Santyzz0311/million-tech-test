@@ -1,6 +1,6 @@
 import { apiClient } from '@/configs/axios'
-import { ApiGetCrypto } from '@/types/implementations/api'
-import { ContractCrypto } from '@/types/implementations/contract'
+import { ApiGetCryptoReponse } from '@/types/implementations/api'
+import { ContractCryptoResponse } from '@/types/implementations/contract'
 import { GetAllCryptosError } from '@/utils/custom-errors'
 import { HTTP_STATUS_CODES } from '@/utils/enums'
 import { isAxiosError } from 'axios'
@@ -13,24 +13,37 @@ import { isAxiosError } from 'axios'
  */
 export const getAllCryptoStatistics = async (
   signal?: AbortSignal,
-): Promise<ContractCrypto[]> => {
+): Promise<ContractCryptoResponse> => {
   try {
-    const response = await apiClient.get<ApiGetCrypto[]>('global/', { signal })
-    const cryptos = response.data
+    const response = await apiClient.get<ApiGetCryptoReponse>('tickers/', {
+      signal,
+    })
+    const cryptoData = response.data
 
-    return cryptos.map(crypto => ({
-      activeMarkets: crypto.active_markets,
-      avgChangePercent: crypto.avg_change_percent,
-      btcDominance: crypto.btc_d,
-      coinsCount: crypto.coins_count,
-      ethDominance: crypto.eth_d,
-      mcapAth: crypto.mcap_ath,
-      mcapChange: crypto.mcap_change,
-      totalMcap: crypto.total_mcap,
-      totalVolume: crypto.total_volume,
-      volumeAth: crypto.volume_ath,
-      volumeChange: crypto.volume_change,
-    }))
+    return {
+      data: cryptoData.data.map(crypto => ({
+        id: crypto.id,
+        name: crypto.name,
+        circulatingSupply: crypto.csupply,
+        marketCapUsd: crypto.market_cap_usd,
+        maxSupply: crypto.msupply,
+        nameId: crypto.nameid,
+        percentChange1h: crypto.percent_change_1h,
+        percentChange24h: crypto.percent_change_24h,
+        percentChange7d: crypto.percent_change_7d,
+        priceBtc: crypto.price_btc,
+        priceUsd: crypto.price_usd,
+        rank: crypto.rank,
+        symbol: crypto.symbol,
+        totalSupply: crypto.tsupply,
+        volume24: crypto.volume24,
+        volume24a: crypto.volume24a,
+      })),
+      info: {
+        coinsNum: cryptoData.data.length,
+        time: cryptoData.info.time,
+      },
+    }
   } catch (error) {
     if (isAxiosError(error)) {
       throw new GetAllCryptosError(

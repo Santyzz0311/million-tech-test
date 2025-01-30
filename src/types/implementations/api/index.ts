@@ -1,46 +1,98 @@
-export interface ApiGetCrypto {
+/**
+ * Represents the raw response format from the cryptocurrency API.
+ */
+export interface ApiCrypto {
   /**
-   * Total number of coins available on our platform.
+   * ID of cryptocurrency.
    */
-  coins_count: number
+  id: string
   /**
-   * Total cryptocurrency exchange pairs (markets) which is tracked on coinlore.
+   * Cryptocurrency Ticker symbol.
    */
-  active_markets: number
+  symbol: string
   /**
-   * Total crypto market cap, sum of all coins mcap.
+   * Name slug.
    */
-  total_mcap: number
+  nameid: string
   /**
-   * Total trading volume for last 24h, sum of 24h volume for all crypto coins.
+   * Full name of crypto coin.
    */
-  total_volume: number
+  name: string
   /**
-   * Dominance of bitcoin mcap.
+   * Rank by marketcap.
    */
-  btc_d: string
+  rank: number
   /**
-   * Dominance of ethereum mcap.
+   * Price in USD currency.
    */
-  eth_d: string
+  price_usd: string
   /**
-   * How mcap changed for last 24h.
+   * Price change in percent for last 24 hours.
    */
-  mcap_change: string
+  percent_change_24h: string
   /**
-   * How trading volume changed for last 24h.
+   * Price change in percent for last 1 hour.
    */
-  volume_change: string
+  percent_change_1h: string
   /**
-   * On average how prices have been changed.
+   * Price change in percent for last 7 days.
    */
-  avg_change_percent: string
+  percent_change_7d: string
   /**
-   * ATH total trading volume.
+   * How much coin costs in BTC.
    */
-  volume_ath: number
+  price_btc: string
   /**
-   * ATH total marketcap.
+   * Coin marketcap in USD.
    */
-  mcap_ath: number
+  market_cap_usd: string
+  /**
+   * Trading volume of coin for last 24 hours in USD.
+   */
+  volume24: string
+  /**
+   * How many coins have been traded in the last 24 hours.
+   */
+  volume24a: string
+  /**
+   * Circulating supply.
+   */
+  csupply: string
+  /**
+   * Total supply.
+   */
+  tsupply: string
+  /**
+   * Maximum supply.
+   */
+  msupply: string
+}
+
+/**
+ * Represents the additional information about the response from the
+ */
+export interface ApiCryptoInfo {
+  /**
+   * Total available coins. Can be used to loop through all coins as maximum
+   * limit of tickers endpoint is 100 coins.
+   */
+  coins_num: number
+  /**
+   * Timestamp of the data response.
+   */
+  time: number
+}
+
+/**
+ * Represents the raw response format from the cryptocurrency API.
+ */
+export interface ApiGetCryptoReponse {
+  /**
+   * Cryptocurrency statistics.
+   */
+  data: ApiCrypto[]
+  /**
+   * Additional information about the response.
+   */
+  info: ApiCryptoInfo
 }

@@ -1,46 +1,98 @@
+/**
+ * Represents the formatted structure for use in the application.
+ */
 export interface ContractCrypto {
   /**
-   * Total number of coins available on our platform.
+   * ID of cryptocurrency.
    */
-  coinsCount: number
+  id: string
   /**
-   * Total cryptocurrency exchange pairs (markets) which is tracked on coinlore.
+   * Cryptocurrency Ticker symbol.
    */
-  activeMarkets: number
+  symbol: string
   /**
-   * Total crypto market cap, sum of all coins mcap.
+   * Name slug.
    */
-  totalMcap: number
+  nameId: string
   /**
-   * Total trading volume for last 24h, sum of 24h volume for all crypto coins.
+   * Full name of crypto coin.
    */
-  totalVolume: number
+  name: string
   /**
-   * Dominance of bitcoin mcap.
+   * Rank by marketcap.
    */
-  btcDominance: string
+  rank: number
   /**
-   * Dominance of ethereum mcap.
+   * Price in USD currency.
    */
-  ethDominance: string
+  priceUsd: string
   /**
-   * How mcap changed for last 24h.
+   * Price change in percent for last 24 hours.
    */
-  mcapChange: string
+  percentChange24h: string
   /**
-   * How trading volume changed for last 24h.
+   * Price change in percent for last 1 hour.
    */
-  volumeChange: string
+  percentChange1h: string
   /**
-   * On average how prices have been changed.
+   * Price change in percent for last 7 days.
    */
-  avgChangePercent: string
+  percentChange7d: string
   /**
-   * ATH total trading volume.
+   * How much coin costs in BTC.
    */
-  volumeAth: number
+  priceBtc: string
   /**
-   * ATH total marketcap.
+   * Coin marketcap in USD.
    */
-  mcapAth: number
+  marketCapUsd: string
+  /**
+   * Trading volume of coin for last 24 hours in USD.
+   */
+  volume24: string
+  /**
+   * How many coins have been traded in the last 24 hours.
+   */
+  volume24a: string
+  /**
+   * Circulating supply.
+   */
+  circulatingSupply: string
+  /**
+   * Total supply.
+   */
+  totalSupply: string
+  /**
+   * Maximum supply.
+   */
+  maxSupply: string
+}
+
+/**
+ * Represents the formatted structure for use in the application.
+ */
+export interface ContractCryptoInfo {
+  /**
+   * Total available coins. Can be used to loop through all coins as maximum
+   * limit of tickers endpoint is 100 coins.
+   */
+  coinsNum: number
+  /**
+   * Timestamp of the data response.
+   */
+  time: number
+}
+
+/**
+ * Represents the formatted structure for use in the application.
+ */
+export interface ContractCryptoResponse {
+  /**
+   * Array of contract with all crypto statistics.
+   */
+  data: ContractCrypto[]
+  /**
+   * Additional information about the response from the API.
+   */
+  info: ContractCryptoInfo
 }
