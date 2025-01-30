@@ -20,7 +20,9 @@
     "isolatedModules": true,
     "resolveJsonModule": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ],
     },
     "types": ["react-native"]
   },
