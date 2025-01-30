@@ -16,9 +16,9 @@
 ## Ejercicio Práctico
 Una gran empresa inmobiliaria requiere una aplicación móvil que obtenga información sobre criptomonedas en USD, ya que se decidió usar el dólar como moneda por defecto. La aplicación debe:
 
-- [ ] Obtener datos de criptomonedas desde la API: [API de criptomonedas Coinlore](https://www.coinlore.com/cryptocurrency-data-api).
-- [ ] Crear una lista de criptomonedas.
-- [ ] Mostrar las tasas de cambio a USD.
+- [X] Obtener datos de criptomonedas desde la API: [API de criptomonedas Coinlore](https://www.coinlore.com/cryptocurrency-data-api).
+- [X] Crear una lista de criptomonedas.
+- [X] Mostrar las tasas de cambio a USD.
 - [ ] Permitir filtrar la lista de criptomonedas.
 - [ ] Mostrar detalles de las criptomonedas.
 - [ ] Intentar utilizar una estructura de Programación Orientada a Objetos (POO).
