@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View } from 'react-native'
+import { ActivityIndicator, StyleSheet, TextInput, View } from 'react-native'
 import { CryptosList } from './cryptos-list'
 import { ContractCryptoResponse } from '@/types/implementations/contract'
 import { FC } from 'react'
@@ -9,12 +9,24 @@ interface Props {
    * Cryptocurrency data.
    */
   cryptos: ContractCryptoResponse
+  /**
+   * Adds more cryptocurrencies to the list.
+   */
+  addMoreCryptos?: () => void
+  /**
+   * Loading more cryptocurrencies.
+   */
+  loadingMoreCryptos?: boolean
 }
 
 /**
  * Cryptos management component.
  */
-export const CryptosManagement: FC<Props> = ({ cryptos }) => {
+export const CryptosManagement: FC<Props> = ({
+  cryptos,
+  addMoreCryptos,
+  loadingMoreCryptos,
+}) => {
   const { filteredCryptos, filters, updateFilters } = useCryptosFilters({
     cryptos: cryptos.data,
   })
@@ -29,11 +41,13 @@ export const CryptosManagement: FC<Props> = ({ cryptos }) => {
         <TextInput
           style={styles.header__input}
           placeholder="Search for a cryptocurrency"
+          placeholderTextColor="black"
           onChangeText={handleOnChangeTextSearchCrypto}
           value={filters.name}
         />
       </View>
-      <CryptosList cryptos={filteredCryptos} />
+      <CryptosList cryptos={filteredCryptos} addMoreCryptos={addMoreCryptos} />
+      {loadingMoreCryptos && <ActivityIndicator color="#000" />}
     </View>
   )
 }

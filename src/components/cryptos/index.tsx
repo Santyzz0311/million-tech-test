@@ -7,15 +7,20 @@ import { CryptosManagement } from './cryptos-management'
  * Cryptos component that manage the list of cryptocurrencies.
  */
 export const Cryptos = () => {
-  const { cryptos, loading, error } = useCryptos()
+  const { cryptos, loading, error, addMoreCryptos, loadingMoreCryptos } =
+    useCryptos()
 
-  if (loading) return <ActivityIndicator />
+  if (loading) return <ActivityIndicator color="#000" />
 
   return error || !cryptos ? (
     <ErrorCannotAccess
       message={error?.message ?? 'An error has been ocurred'}
     />
   ) : (
-    <CryptosManagement cryptos={cryptos} />
+    <CryptosManagement
+      loadingMoreCryptos={loadingMoreCryptos}
+      cryptos={cryptos}
+      addMoreCryptos={addMoreCryptos}
+    />
   )
 }

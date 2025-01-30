@@ -8,12 +8,20 @@ interface Props {
    * List of cryptocurrencies.
    */
   cryptos: ContractCrypto[]
+  /**
+   * Adds more cryptocurrencies to the list.
+   */
+  addMoreCryptos?: () => void
 }
 
 /**
  * Cryptos list component.
  */
-export const CryptosList: FC<Props> = ({ cryptos }) => {
+export const CryptosList: FC<Props> = ({ cryptos, addMoreCryptos }) => {
+  const handleOnEndReachedCryptosList = () => {
+    addMoreCryptos?.()
+  }
+
   return cryptos.length > 0 ? (
     <FlatList
       data={cryptos}
@@ -22,7 +30,9 @@ export const CryptosList: FC<Props> = ({ cryptos }) => {
       showsVerticalScrollIndicator={false}
       ItemSeparatorComponent={() => <View style={{ height: 10 }} />}
       style={{ paddingHorizontal: 10 }}
-      contentContainerStyle={{ paddingVertical: 10 }}
+      contentContainerStyle={{ paddingBottom: 60 }}
+      onEndReachedThreshold={0.5}
+      onEndReached={handleOnEndReachedCryptosList}
     />
   ) : (
     <View style={styles['container--empty']}>

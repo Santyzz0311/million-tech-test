@@ -52,6 +52,9 @@ export const CryptoItem = ({ crypto }: Props) => {
               <Text style={styles.details__item}>
                 Percent change 7d: {crypto.percentChange7d || '-'}
               </Text>
+              <Text style={styles.details__item}>
+                Price in btc: {crypto.priceBtc || '-'}
+              </Text>
             </View>
           )}
         </View>

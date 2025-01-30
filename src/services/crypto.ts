@@ -3,7 +3,19 @@ import { ApiGetCryptoReponse } from '@/types/implementations/api'
 import { ContractCryptoResponse } from '@/types/implementations/contract'
 import { GetAllCryptosError } from '@/utils/custom-errors'
 import { HTTP_STATUS_CODES } from '@/utils/enums'
+import { formatPriceToCurrency } from '@/utils/helpers/price-format'
 import { isAxiosError } from 'axios'
+
+interface GetAllCryptoStatisticsParams {
+  /**
+   * The start index of the list of cryptocurrencies.
+   */
+  start?: number
+  /**
+   * The limit of the list of cryptocurrencies.
+   */
+  limit?: number
+}
 
 /**
  * Get all crypto statistics.
@@ -12,12 +24,16 @@ import { isAxiosError } from 'axios'
  * @returns A promise that resolves to an array of contract with all crypto statistics.
  */
 export const getAllCryptoStatistics = async (
+  { start = 100, limit = 100 }: GetAllCryptoStatisticsParams = {},
   signal?: AbortSignal,
 ): Promise<ContractCryptoResponse> => {
   try {
-    const response = await apiClient.get<ApiGetCryptoReponse>('tickers/', {
-      signal,
-    })
+    const response = await apiClient.get<ApiGetCryptoReponse>(
+      `tickers/?start=${start}&limit=${limit}`,
+      {
+        signal,
+      },
+    )
     const cryptoData = response.data
 
     return {
@@ -31,8 +47,8 @@ export const getAllCryptoStatistics = async (
         percentChange1h: crypto.percent_change_1h,
         percentChange24h: crypto.percent_change_24h,
         percentChange7d: crypto.percent_change_7d,
-        priceBtc: crypto.price_btc,
-        priceUsd: crypto.price_usd,
+        priceBtc: formatPriceToCurrency(Number(crypto.price_btc)),
+        priceUsd: formatPriceToCurrency(Number(crypto.price_usd)),
         rank: crypto.rank,
         symbol: crypto.symbol,
         totalSupply: crypto.tsupply,
