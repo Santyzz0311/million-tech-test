@@ -1,22 +1,19 @@
 import { useCryptos } from '@/hooks/useCryptos'
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator } from 'react-native'
+import { ErrorCannotAccess } from '@/components/design-system/error'
+import { CryptosList } from './cryptos-list'
 
+/**
+ * Cryptos component that manage the list of cryptocurrencies.
+ */
 export const Cryptos = () => {
-  const { cryptos, loading } = useCryptos()
+  const { cryptos, loading, error } = useCryptos()
 
-  console.log({ cryptos })
+  if (loading) return <ActivityIndicator />
 
-  return loading ? (
-    <ActivityIndicator />
+  return error ? (
+    <ErrorCannotAccess message={error.message} />
   ) : (
-    <View style={styles.container}>
-      <Text>DAS</Text>
-    </View>
+    <CryptosList cryptos={cryptos?.data ?? []} />
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-})
