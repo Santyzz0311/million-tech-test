@@ -4,6 +4,7 @@ import { useBoolean } from '@/hooks/shared/useBoolean'
 import { ContractCrypto } from '@/types/implementations/contract'
 
 jest.mock('@/hooks/shared/useBoolean')
+jest.mock('@/hooks/shared/useAnimation')
 
 describe('CryptoItem Component', () => {
   const mockToggle = jest.fn()
@@ -35,7 +36,7 @@ describe('CryptoItem Component', () => {
   }
 
   test('renders cryptocurrency main information', () => {
-    render(<CryptoItem crypto={mockCrypto} />)
+    render(<CryptoItem crypto={mockCrypto} index={1} />)
 
     expect(screen.getByText('Bitcoin')).toBeTruthy()
     expect(screen.getByText('Price in USD: 50000')).toBeTruthy()
@@ -47,7 +48,7 @@ describe('CryptoItem Component', () => {
       toggle: mockToggle,
     })
 
-    render(<CryptoItem crypto={mockCrypto} />)
+    render(<CryptoItem crypto={mockCrypto} index={1} />)
 
     expect(screen.getByText('Rank: 1')).toBeTruthy()
     expect(screen.getByText('Market cap usd: 900B')).toBeTruthy()
@@ -59,7 +60,7 @@ describe('CryptoItem Component', () => {
   })
 
   test('toggles details visibility when pressed', () => {
-    render(<CryptoItem crypto={mockCrypto} />)
+    render(<CryptoItem crypto={mockCrypto} index={1} />)
 
     fireEvent.press(screen.getByText('Bitcoin'))
 
@@ -72,7 +73,7 @@ describe('CryptoItem Component', () => {
       name: 'Super Long Cryptocurrency Name Exceeding 20 Chars',
     }
 
-    render(<CryptoItem crypto={longNameCrypto} />)
+    render(<CryptoItem crypto={longNameCrypto} index={1} />)
 
     expect(
       screen.getByText(longNameCrypto.name.slice(0, 20).concat('...')),
