@@ -1,5 +1,8 @@
 module.exports = {
   root: true,
+  env: {
+    jest: true,
+  },
   extends: ['expo', 'prettier'],
   plugins: ['prettier'],
   parser: '@typescript-eslint/parser',
