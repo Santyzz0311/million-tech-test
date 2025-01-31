@@ -6,12 +6,12 @@
 - [X] Compatible con iOS y Android
 
 ## Criterios de Evaluación
-- [ ] Arquitectura
-- [ ] Estructura
-- [ ] Código documentado
-- [ ] Mejores prácticas
-- [ ] Rendimiento
-- [ ] Pruebas unitarias (opcional)
+- [X] Arquitectura
+- [X] Estructura
+- [X] Código documentado
+- [X] Mejores prácticas
+- [X] Rendimiento
+- [X] Pruebas unitarias (opcional)
 
 ## Ejercicio Práctico
 Una gran empresa inmobiliaria requiere una aplicación móvil que obtenga información sobre criptomonedas en USD, ya que se decidió usar el dólar como moneda por defecto. La aplicación debe:
@@ -25,8 +25,8 @@ Una gran empresa inmobiliaria requiere una aplicación móvil que obtenga inform
 
 ## Entrega
 - [X] Empaquetar la solución en un archivo `.zip` o subirla a GitHub (o similar).
-- [ ] Incluir pasos para correr el proyecto después de descargarlo.
-- [ ] Incluir una copia de seguridad de la base de datos, si es necesario.
-- [ ] Proveer instrucciones adicionales en caso de requerirse para correr el proyecto.
+- [X] Incluir pasos para correr el proyecto después de descargarlo.
+- [-] Incluir una copia de seguridad de la base de datos, si es necesario.
+- [X] Proveer instrucciones adicionales en caso de requerirse para correr el proyecto.
 
 Enviar la solución a: `hr@millionluxury.com`
