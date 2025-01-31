@@ -1,5 +1,5 @@
 import { ActivityIndicator, StyleSheet, TextInput, View } from 'react-native'
-import { CryptosList } from './cryptos-list'
+import { CryptosList } from '@/components/cryptos/cryptos-management/cryptos-list'
 import { ContractCryptoResponse } from '@/types/implementations/contract'
 import { FC } from 'react'
 import { useCryptosFilters } from '@/hooks/crypto/useCryptoFilters'
@@ -49,7 +49,11 @@ export const CryptosManagement: FC<Props> = ({
       <CryptosList cryptos={filteredCryptos} addMoreCryptos={addMoreCryptos} />
       {loadingMoreCryptos && (
         <View style={styles.container__loadMoreData}>
-          <ActivityIndicator size="large" color="black" />
+          <ActivityIndicator
+            testID="loading-more-data"
+            size="large"
+            color="black"
+          />
         </View>
       )}
     </View>

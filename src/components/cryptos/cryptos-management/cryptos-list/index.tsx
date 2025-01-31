@@ -1,7 +1,7 @@
 import { ContractCrypto } from '@/types/implementations/contract'
 import { FC } from 'react'
 import { FlatList, StyleSheet, Text, View } from 'react-native'
-import { CryptoItem } from './crypto-item'
+import { CryptoItem } from '@/components/cryptos/cryptos-management/cryptos-list/crypto-item'
 
 interface Props {
   /**
@@ -33,6 +33,7 @@ export const CryptosList: FC<Props> = ({ cryptos, addMoreCryptos }) => {
       contentContainerStyle={{ paddingBottom: 60 }}
       onEndReachedThreshold={0.5}
       onEndReached={handleOnEndReachedCryptosList}
+      testID="cryptos-list"
     />
   ) : (
     <View style={styles['container--empty']}>
